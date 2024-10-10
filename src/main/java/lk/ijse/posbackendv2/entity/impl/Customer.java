@@ -2,7 +2,7 @@
  * Copyright © 2024. Roshen Perera
  */
 
-package lk.ijse.POSBackendV2.entity.impl;
+package lk.ijse.posbackendv2.entity.impl;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

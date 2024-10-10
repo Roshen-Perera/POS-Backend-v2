@@ -1,7 +1,7 @@
-package lk.ijse.POSBackendV2.customStatusCode;
+package lk.ijse.posbackendv2.customStatusCode;
 
 
-import lk.ijse.POSBackendV2.dto.CustomerStatus;
+import lk.ijse.posbackendv2.dto.CustomerStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

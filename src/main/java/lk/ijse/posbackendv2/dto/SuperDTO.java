@@ -1,4 +1,4 @@
-package lk.ijse.POSBackendV2.dto;
+package lk.ijse.posbackendv2.dto;
 
 import java.io.Serializable;
 

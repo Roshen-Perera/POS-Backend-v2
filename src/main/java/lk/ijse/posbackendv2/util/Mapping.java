@@ -1,7 +1,7 @@
-package lk.ijse.POSBackendV2.util;
+package lk.ijse.posbackendv2.util;
 
-import lk.ijse.POSBackendV2.dto.impl.CustomerDTO;
-import lk.ijse.POSBackendV2.entity.impl.Customer;
+import lk.ijse.posbackendv2.dto.impl.CustomerDTO;
+import lk.ijse.posbackendv2.entity.impl.Customer;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

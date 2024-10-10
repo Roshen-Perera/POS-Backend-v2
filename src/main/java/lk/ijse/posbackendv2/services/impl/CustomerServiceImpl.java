@@ -1,15 +1,14 @@
-package lk.ijse.POSBackendV2.services.impl;
+package lk.ijse.posbackendv2.services.impl;
 
 import jakarta.transaction.Transactional;
-import lk.ijse.POSBackendV2.customStatusCode.SelectedCustomerErrorStatus;
-import lk.ijse.POSBackendV2.services.CustomerService;
-import lk.ijse.POSBackendV2.dao.CustomerDAO;
-import lk.ijse.POSBackendV2.dto.CustomerStatus;
-import lk.ijse.POSBackendV2.dto.impl.CustomerDTO;
-import lk.ijse.POSBackendV2.entity.impl.Customer;
-import lk.ijse.POSBackendV2.exception.CustomerNotFoundException;
-import lk.ijse.POSBackendV2.services.CustomerService;
-import lk.ijse.POSBackendV2.util.Mapping;
+import lk.ijse.posbackendv2.customStatusCode.SelectedCustomerErrorStatus;
+import lk.ijse.posbackendv2.dao.CustomerDAO;
+import lk.ijse.posbackendv2.dto.CustomerStatus;
+import lk.ijse.posbackendv2.dto.impl.CustomerDTO;
+import lk.ijse.posbackendv2.entity.impl.Customer;
+import lk.ijse.posbackendv2.exception.CustomerNotFoundException;
+import lk.ijse.posbackendv2.services.CustomerService;
+import lk.ijse.posbackendv2.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

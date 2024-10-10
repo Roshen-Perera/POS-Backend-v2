@@ -1,6 +1,6 @@
-package lk.ijse.POSBackendV2.dao;
+package lk.ijse.posbackendv2.dao;
 
-import lk.ijse.POSBackendV2.entity.impl.Customer;
+import lk.ijse.posbackendv2.entity.impl.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

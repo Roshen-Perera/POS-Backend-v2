@@ -1,7 +1,7 @@
-package lk.ijse.POSBackendV2.services;
+package lk.ijse.posbackendv2.services;
 
-import lk.ijse.POSBackendV2.dto.CustomerStatus;
-import lk.ijse.POSBackendV2.dto.impl.CustomerDTO;
+import lk.ijse.posbackendv2.dto.CustomerStatus;
+import lk.ijse.posbackendv2.dto.impl.CustomerDTO;
 
 import java.util.List;
 

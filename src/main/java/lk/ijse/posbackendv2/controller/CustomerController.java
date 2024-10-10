@@ -1,23 +1,23 @@
-package lk.ijse.POSBackendV2.controller;
+package lk.ijse.posbackendv2.controller;
 
-import lk.ijse.POSBackendV2.customStatusCode.SelectedCustomerErrorStatus;
-import lk.ijse.POSBackendV2.dto.CustomerStatus;
-import lk.ijse.POSBackendV2.dto.impl.CustomerDTO;
-import lk.ijse.POSBackendV2.exception.DataPersistException;
-import lk.ijse.POSBackendV2.services.CustomerService;
+import lk.ijse.posbackendv2.dto.CustomerStatus;
+import lk.ijse.posbackendv2.dto.impl.CustomerDTO;
+import lk.ijse.posbackendv2.exception.DataPersistException;
+import lk.ijse.posbackendv2.services.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.util.regex.Pattern;
-
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("api/v1/customers")
 public class CustomerController {
+    static Logger logger =  LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     CustomerService userService;
@@ -50,5 +50,6 @@ public class CustomerController {
     @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CustomerStatus getSelectedCustomer(@PathVariable ("userId") String userId){
         return userService.getCustomer(userId);
+
     }
 }

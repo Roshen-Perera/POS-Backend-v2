@@ -1,4 +1,4 @@
-package lk.ijse.POSBackendV2.exception;
+package lk.ijse.posbackendv2.exception;
 
 public class DataPersistException extends RuntimeException {
 
