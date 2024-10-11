@@ -50,6 +50,28 @@ public class CustomerController {
     @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CustomerStatus getSelectedCustomer(@PathVariable ("userId") String userId){
         return userService.getCustomer(userId);
+    }
 
+    @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> update(
+            @RequestPart("customerId") String customerId,
+            @RequestPart("name") String name,
+            @RequestPart("address") String address,
+            @RequestPart("phone") String phone
+    )
+    {
+        try {
+            var buildCustomerDTO = new CustomerDTO();
+            buildCustomerDTO.setId(customerId);
+            buildCustomerDTO.setName(name);
+            buildCustomerDTO.setAddress(address);
+            buildCustomerDTO.setPhone(phone);
+            userService.saveCustomer(buildCustomerDTO);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (DataPersistException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
