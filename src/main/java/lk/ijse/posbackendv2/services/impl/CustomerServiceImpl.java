@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -48,7 +49,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String customerId) {
-
+        Optional<Customer> existedCustomer = customerDAO.findById(customerId);
+        if(!existedCustomer.isPresent()){
+            throw new CustomerNotFoundException("Customer with id " + customerId + " not found");
+        }else {
+            customerDAO.deleteById(customerId);
+        }
     }
 
     @Override
