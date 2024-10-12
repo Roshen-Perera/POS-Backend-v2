@@ -14,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("api/v1/customers")
@@ -21,7 +23,7 @@ public class CustomerController {
     static Logger logger =  LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    CustomerService userService;
+    CustomerService customerService;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -39,7 +41,7 @@ public class CustomerController {
             buildCustomerDTO.setName(name);
             buildCustomerDTO.setAddress(address);
             buildCustomerDTO.setPhone(phone);
-            userService.saveCustomer(buildCustomerDTO);
+            customerService.saveCustomer(buildCustomerDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -48,17 +50,20 @@ public class CustomerController {
         }
     }
 
-
-
-    @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CustomerStatus getSelectedCustomer(@PathVariable ("userId") String userId){
-        return userService.getCustomer(userId);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CustomerDTO> getAllCustomers(){
+        return customerService.getAllCustomers();
     }
 
-    @DeleteMapping(value = "/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("userId") String userId){
+    @GetMapping(value = "/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CustomerStatus getSelectedCustomer(@PathVariable ("customerId") String customerId){
+        return customerService.getCustomer(customerId);
+    }
+
+    @DeleteMapping(value = "/{customerId}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable("customerId") String customerId){
         try {
-            userService.deleteCustomer(userId);
+            customerService.deleteCustomer(customerId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (CustomerNotFoundException e){
             e.printStackTrace();
@@ -83,7 +88,7 @@ public class CustomerController {
             buildCustomerDTO.setName(name);
             buildCustomerDTO.setAddress(address);
             buildCustomerDTO.setPhone(phone);
-            userService.saveCustomer(buildCustomerDTO);
+            customerService.saveCustomer(buildCustomerDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

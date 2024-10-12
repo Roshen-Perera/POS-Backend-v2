@@ -1,7 +1,3 @@
-/*
- * Copyright © 2024. Roshen Perera
- */
-
 package lk.ijse.posbackendv2.entity.impl;
 
 import jakarta.persistence.Entity;
@@ -16,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customer")
-public class Customer implements SuperEntity {
+@Table(name = "product")
+public class Product implements SuperEntity {
     @Id
-    private String id;
-    private String name;
-    private String address;
-    private String phone;
-    //private List<Order> orders;
+    String id;
+    String name;
+    String type;
+    int qty;
+    double price;
 }
