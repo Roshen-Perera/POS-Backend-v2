@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -50,7 +51,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(String productId) {
-
+        Optional<Product> existedProduct = productDAO.findById(productId);
+        if (!existedProduct.isPresent()) {
+            throw new ProductNotFoundException("Product with id " + productId + " not found");
+        }else {
+            productDAO.deleteById(productId);
+        }
     }
 
     @Override
