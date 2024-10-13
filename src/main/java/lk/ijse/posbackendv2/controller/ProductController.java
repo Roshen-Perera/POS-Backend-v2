@@ -34,7 +34,7 @@ public class ProductController {
     ){
         try {
             ProductDTO productDTO = new ProductDTO();
-            productDTO.setId(id);
+            productDTO.setProductId(id);
             productDTO.setName(name);
             productDTO.setType(type);
             productDTO.setQty(Integer.parseInt(qty));
@@ -81,7 +81,7 @@ public class ProductController {
     ){
         try {
             ProductDTO productDTO = new ProductDTO();
-            productDTO.setId(id);
+            productDTO.setProductId(id);
             productDTO.setName(name);
             productDTO.setType(type);
             productDTO.setQty(Integer.parseInt(qty));

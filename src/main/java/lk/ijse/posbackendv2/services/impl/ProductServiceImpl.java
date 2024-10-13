@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
             Product selectedProduct = productDAO.getReferenceById(productId);
             return mapping.toProductDto(selectedProduct);
         }else {
-            return new SelectedProductErrorStatus(2, "Product with id " + productId + " not found");
+            return new SelectedProductErrorStatus(2, "Product with productId " + productId + " not found");
         }
     }
 
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(String productId) {
         Optional<Product> existedProduct = productDAO.findById(productId);
         if (!existedProduct.isPresent()) {
-            throw new ProductNotFoundException("Product with id " + productId + " not found");
+            throw new ProductNotFoundException("Product with productId " + productId + " not found");
         }else {
             productDAO.deleteById(productId);
         }

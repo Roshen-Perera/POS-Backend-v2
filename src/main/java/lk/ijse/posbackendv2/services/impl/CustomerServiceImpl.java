@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
             Customer selectedCustomer = customerDAO.getReferenceById(customerId);
             return mapping.toCustomerDto(selectedCustomer);
         }else {
-            return new SelectedCustomerErrorStatus(2, "Customer with id " + customerId + " not found");
+            return new SelectedCustomerErrorStatus(2, "Customer with productId " + customerId + " not found");
         }
     }
 
@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomer(String customerId) {
         Optional<Customer> existedCustomer = customerDAO.findById(customerId);
         if(!existedCustomer.isPresent()){
-            throw new CustomerNotFoundException("Customer with id " + customerId + " not found");
+            throw new CustomerNotFoundException("Customer with productId " + customerId + " not found");
         }else {
             customerDAO.deleteById(customerId);
         }
@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void updateCustomer(String customerId, CustomerDTO customerDTO) {
         Optional<Customer> customer = customerDAO.findById(customerId);
         if(customer.isPresent()) {
-            customer.get().setId(customerDTO.getId());
+            customer.get().setCustomerId(customerDTO.getId());
             customer.get().setName(customerDTO.getName());
             customer.get().setAddress(customerDTO.getAddress());
             customer.get().setPhone(customerDTO.getPhone());

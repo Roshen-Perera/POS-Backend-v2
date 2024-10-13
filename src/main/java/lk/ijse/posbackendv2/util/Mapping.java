@@ -1,8 +1,10 @@
 package lk.ijse.posbackendv2.util;
 
 import lk.ijse.posbackendv2.dto.impl.CustomerDTO;
+import lk.ijse.posbackendv2.dto.impl.OrderDTO;
 import lk.ijse.posbackendv2.dto.impl.ProductDTO;
 import lk.ijse.posbackendv2.entity.impl.Customer;
+import lk.ijse.posbackendv2.entity.impl.Order;
 import lk.ijse.posbackendv2.entity.impl.Product;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -37,6 +39,18 @@ public class Mapping {
 
     public List<ProductDTO> asProductDTO(List<Product> productEntityList){
         return modelMapper.map(productEntityList, new TypeToken<List<ProductDTO>>(){}.getType());
+    }
+
+    public Order toOrderEntity(OrderDTO orderDto){
+        return modelMapper.map(orderDto, Order.class);
+    }
+
+    public OrderDTO toOrderDto(Order orderEntity){
+        return modelMapper.map(orderEntity, OrderDTO.class);
+    }
+
+    public List<OrderDTO> asOrderDTO(List<Order> orderEntityList){
+        return modelMapper.map(orderEntityList, new TypeToken<List<OrderDTO>>(){}.getType());
     }
 
 }
