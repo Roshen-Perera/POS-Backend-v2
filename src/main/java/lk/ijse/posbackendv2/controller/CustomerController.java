@@ -24,8 +24,6 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
-    @Autowired
-    private ModelMapper modelMapper;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> save(

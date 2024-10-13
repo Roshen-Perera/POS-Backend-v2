@@ -1,5 +1,6 @@
 package lk.ijse.posbackendv2.controller;
 
+import lk.ijse.posbackendv2.dto.ProductStatus;
 import lk.ijse.posbackendv2.dto.impl.ProductDTO;
 import lk.ijse.posbackendv2.exception.DataPersistException;
 import lk.ijse.posbackendv2.services.ProductService;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
@@ -34,8 +37,8 @@ public class ProductController {
             productDTO.setId(id);
             productDTO.setName(name);
             productDTO.setType(type);
-            productDTO.setQty(qty);
-            productDTO.setPrice(price);
+            productDTO.setQty(Integer.parseInt(qty));
+            productDTO.setPrice(Double.parseDouble(price));
             productService.saveProduct(productDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
@@ -44,4 +47,15 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductDTO> getAllProducts(){
+        return productService.getAllProducts();
+    }
+
+    @GetMapping(value = "/{productId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductStatus getSelectedProducts(@PathVariable("productId") String id){
+        return productService.getProduct(id);
+    }
+
 }

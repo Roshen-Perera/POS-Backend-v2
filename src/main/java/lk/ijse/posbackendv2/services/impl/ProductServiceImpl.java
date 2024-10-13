@@ -1,6 +1,7 @@
 package lk.ijse.posbackendv2.services.impl;
 
 import jakarta.transaction.Transactional;
+import lk.ijse.posbackendv2.customStatusCode.SelectedProductErrorStatus;
 import lk.ijse.posbackendv2.dao.ProductDAO;
 import lk.ijse.posbackendv2.dto.ProductStatus;
 import lk.ijse.posbackendv2.dto.impl.ProductDTO;
@@ -33,12 +34,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDTO> getAllProducts() {
-        return List.of();
+        List<Product> productList = productDAO.findAll();
+        return mapping.asProductDTO(productList);
     }
 
     @Override
     public ProductStatus getProduct(String productId) {
-        return null;
+        if (productDAO.existsById(productId)) {
+            Product selectedProduct = productDAO.getReferenceById(productId);
+            return mapping.toProductDto(selectedProduct);
+        }else {
+            return new SelectedProductErrorStatus(2, "Product with id " + productId + " not found");
+        }
     }
 
     @Override
