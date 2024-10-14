@@ -20,9 +20,9 @@ import java.util.List;
 public class Customer implements SuperEntity {
     @Id
     private String customerId;
-    private String name;
-    private String address;
-    private String phone;
+    private String customerName;
+    private String customerAddress;
+    private String customerPhone;
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
 }

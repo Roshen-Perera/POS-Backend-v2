@@ -13,9 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class ProductDTO implements ProductStatus {
     private String productId;
-    private String name;
-    private String type;
-    private int qty;
-    private double price;
-    private List<OrderDTO> orders;
+    private String productName;
+    private String productType;
+    private int productQty;
+    private double productPrice;
 }

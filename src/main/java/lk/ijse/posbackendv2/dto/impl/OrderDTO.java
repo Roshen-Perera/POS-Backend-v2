@@ -1,9 +1,7 @@
 package lk.ijse.posbackendv2.dto.impl;
 
-import jakarta.persistence.*;
+
 import lk.ijse.posbackendv2.dto.OrderStatus;
-import lk.ijse.posbackendv2.entity.impl.Customer;
-import lk.ijse.posbackendv2.entity.impl.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-@Table(name = "orders")
 public class OrderDTO implements OrderStatus {
-    @Id
     private String orderId;
     private String customerId;
     private String customerName;

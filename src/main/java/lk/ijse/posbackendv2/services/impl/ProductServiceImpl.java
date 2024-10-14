@@ -36,18 +36,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> getAllProducts() {
         List<Product> productList = productDAO.findAll();
-        return mapping.asProductDTO(productList);
+        return mapping.asProductDTOList(productList);
     }
 
     @Override
     public ProductStatus getProduct(String productId) {
         if (productDAO.existsById(productId)) {
             Product selectedProduct = productDAO.getReferenceById(productId);
-            return mapping.toProductDto(selectedProduct);
+            return mapping.toProductDTO(selectedProduct);
         }else {
             return new SelectedProductErrorStatus(2, "Product with productId " + productId + " not found");
         }
     }
+
 
     @Override
     public void deleteProduct(String productId) {
@@ -61,6 +62,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateProduct(String productId, ProductDTO productDTO) {
-
+        Optional<Product> product = productDAO.findById(productId);
+        if(product.isPresent()) {
+            product.get().setProductId(productDTO.getProductId());
+            product.get().setProductName(productDTO.getProductName());
+            product.get().setProductType(productDTO.getProductType());
+            product.get().setProductQty(productDTO.getProductQty());
+            product.get().setProductPrice(productDTO.getProductPrice());
+        }
     }
 }

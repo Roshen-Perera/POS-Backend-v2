@@ -35,10 +35,11 @@ public class ProductController {
         try {
             ProductDTO productDTO = new ProductDTO();
             productDTO.setProductId(id);
-            productDTO.setName(name);
-            productDTO.setType(type);
-            productDTO.setQty(Integer.parseInt(qty));
-            productDTO.setPrice(Double.parseDouble(price));
+            productDTO.setProductName(name);
+            productDTO.setProductType(type);
+            productDTO.setProductQty(Integer.parseInt(qty));
+            productDTO.setProductPrice(Double.parseDouble(price));
+            logger.info("Product Saved Successfully");
             productService.saveProduct(productDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
@@ -50,17 +51,20 @@ public class ProductController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDTO> getAllProducts(){
+        logger.info("Product List fetched Successfully");
         return productService.getAllProducts();
     }
 
     @GetMapping(value = "/{productId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductStatus getSelectedProducts(@PathVariable("productId") String id){
+        logger.info("Product fetched Successfully");
         return productService.getProduct(id);
     }
 
     @DeleteMapping(value = "/{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable ("productId") String productId){
         try {
+            logger.info("Product Deleted Successfully");
             productService.deleteProduct(productId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (ProductNotFoundException e) {
@@ -82,11 +86,12 @@ public class ProductController {
         try {
             ProductDTO productDTO = new ProductDTO();
             productDTO.setProductId(id);
-            productDTO.setName(name);
-            productDTO.setType(type);
-            productDTO.setQty(Integer.parseInt(qty));
-            productDTO.setPrice(Double.parseDouble(price));
+            productDTO.setProductName(name);
+            productDTO.setProductType(type);
+            productDTO.setProductQty(Integer.parseInt(qty));
+            productDTO.setProductPrice(Double.parseDouble(price));
             productService.saveProduct(productDTO);
+            logger.info("Product Updated Successfully");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

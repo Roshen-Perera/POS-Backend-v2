@@ -16,10 +16,10 @@ import java.util.List;
 public class Product implements SuperEntity {
     @Id
     private String productId;
-    private String name;
-    private String type;
-    private int qty;
-    private double price;
+    private String productName;
+    private String productType;
+    private int productQty;
+    private double productPrice;
     @OneToMany(mappedBy = "product")
     private List<Order> orders;
 }

@@ -19,38 +19,36 @@ public class Mapping {
     @Autowired
     private ModelMapper modelMapper;
 
-    public Customer toCustomerEntity(CustomerDTO customerDto){
-        return modelMapper.map(customerDto, Customer.class);
+    // Customer mapping
+    public Customer toCustomerEntity(CustomerDTO customerDTO) {
+        return modelMapper.map(customerDTO, Customer.class);
     }
-    public CustomerDTO toCustomerDto(Customer customerEntity){
-        return modelMapper.map(customerEntity, CustomerDTO.class);
+    public CustomerDTO toCustomerDTO(Customer customer) {
+        return modelMapper.map(customer, CustomerDTO.class);
     }
-    public List<CustomerDTO> asCustomerDTO(List<Customer> customerEntityList){
-        return modelMapper.map(customerEntityList, new TypeToken<List<CustomerDTO>>(){}.getType());
-    }
-
-    public Product toProductEntity(ProductDTO productDto){
-        return modelMapper.map(productDto, Product.class);
+    public List<CustomerDTO> asCustomerDTOList(List<Customer> customerEntities) {
+        return modelMapper.map(customerEntities, new TypeToken<List<CustomerDTO>>() {}.getType());
     }
 
-    public ProductDTO toProductDto(Product productEntity){
-        return modelMapper.map(productEntity, ProductDTO.class);
+    // Product mapping
+    public ProductDTO toProductDTO(Product product) {
+        return modelMapper.map(product, ProductDTO.class);
+    }
+    public Product toProductEntity(ProductDTO productDTO) {
+        return modelMapper.map(productDTO, Product.class);
+    }
+    public List<ProductDTO> asProductDTOList(List<Product> productEntities) {
+        return modelMapper.map(productEntities, new TypeToken<List<ProductDTO>>() {}.getType());
     }
 
-    public List<ProductDTO> asProductDTO(List<Product> productEntityList){
-        return modelMapper.map(productEntityList, new TypeToken<List<ProductDTO>>(){}.getType());
+    // Order mapping
+    public OrderDTO toOrderDTO(Order order) {
+        return modelMapper.map(order, OrderDTO.class);
     }
-
-    public Order toOrderEntity(OrderDTO orderDto){
-        return modelMapper.map(orderDto, Order.class);
+    public Order toOrderEntity(OrderDTO orderDTO) {
+        return modelMapper.map(orderDTO, Order.class);
     }
-
-    public OrderDTO toOrderDto(Order orderEntity){
-        return modelMapper.map(orderEntity, OrderDTO.class);
+    public List<OrderDTO> asOrderDTOList(List<Order> orderEntities) {
+        return modelMapper.map(orderEntities, new TypeToken<List<OrderDTO>>() {}.getType());
     }
-
-    public List<OrderDTO> asOrderDTO(List<Order> orderEntityList){
-        return modelMapper.map(orderEntityList, new TypeToken<List<OrderDTO>>(){}.getType());
-    }
-
 }

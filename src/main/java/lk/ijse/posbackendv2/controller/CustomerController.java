@@ -35,10 +35,11 @@ public class CustomerController {
     {
         try {
             var buildCustomerDTO = new CustomerDTO();
-            buildCustomerDTO.setId(customerId);
-            buildCustomerDTO.setName(name);
-            buildCustomerDTO.setAddress(address);
-            buildCustomerDTO.setPhone(phone);
+            buildCustomerDTO.setCustomerId(customerId);
+            buildCustomerDTO.setCustomerName(name);
+            buildCustomerDTO.setCustomerAddress(address);
+            buildCustomerDTO.setCustomerPhone(phone);
+            logger.info("Customer Saved Successfully");
             customerService.saveCustomer(buildCustomerDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e){
@@ -50,11 +51,13 @@ public class CustomerController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CustomerDTO> getAllCustomers(){
+        logger.info("Customer List fetched Successfully");
         return customerService.getAllCustomers();
     }
 
     @GetMapping(value = "/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CustomerStatus getSelectedCustomer(@PathVariable ("customerId") String customerId){
+        logger.info("Customer fetched Successfully");
         return customerService.getCustomer(customerId);
     }
 
@@ -62,6 +65,7 @@ public class CustomerController {
     public ResponseEntity<Void> deleteCustomer(@PathVariable("customerId") String customerId){
         try {
             customerService.deleteCustomer(customerId);
+            logger.info("Customer Deleted Successfully");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (CustomerNotFoundException e){
             e.printStackTrace();
@@ -82,11 +86,12 @@ public class CustomerController {
     {
         try {
             var buildCustomerDTO = new CustomerDTO();
-            buildCustomerDTO.setId(customerId);
-            buildCustomerDTO.setName(name);
-            buildCustomerDTO.setAddress(address);
-            buildCustomerDTO.setPhone(phone);
+            buildCustomerDTO.setCustomerId(customerId);
+            buildCustomerDTO.setCustomerName(name);
+            buildCustomerDTO.setCustomerAddress(address);
+            buildCustomerDTO.setCustomerPhone(phone);
             customerService.saveCustomer(buildCustomerDTO);
+            logger.info("Customer updated Successfully");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

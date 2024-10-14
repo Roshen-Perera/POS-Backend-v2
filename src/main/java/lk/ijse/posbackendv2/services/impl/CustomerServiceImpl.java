@@ -35,14 +35,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerDTO> getAllCustomers() {
         List<Customer> allCustomers = customerDAO.findAll();
-        return mapping.asCustomerDTO(allCustomers);
+        return mapping.asCustomerDTOList(allCustomers);
     }
 
     @Override
     public CustomerStatus getCustomer(String customerId) {
         if(customerDAO.existsById(customerId)){
             Customer selectedCustomer = customerDAO.getReferenceById(customerId);
-            return mapping.toCustomerDto(selectedCustomer);
+            return mapping.toCustomerDTO(selectedCustomer);
         }else {
             return new SelectedCustomerErrorStatus(2, "Customer with productId " + customerId + " not found");
         }
@@ -62,10 +62,10 @@ public class CustomerServiceImpl implements CustomerService {
     public void updateCustomer(String customerId, CustomerDTO customerDTO) {
         Optional<Customer> customer = customerDAO.findById(customerId);
         if(customer.isPresent()) {
-            customer.get().setCustomerId(customerDTO.getId());
-            customer.get().setName(customerDTO.getName());
-            customer.get().setAddress(customerDTO.getAddress());
-            customer.get().setPhone(customerDTO.getPhone());
+            customer.get().setCustomerId(customerDTO.getCustomerId());
+            customer.get().setCustomerName(customerDTO.getCustomerName());
+            customer.get().setCustomerAddress(customerDTO.getCustomerAddress());
+            customer.get().setCustomerPhone(customerDTO.getCustomerPhone());
         }
     }
 }

@@ -14,9 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDTO implements CustomerStatus {
-    private String id;
-    private String name;
-    private String address;
-    private String phone;
-    private List<OrderDTO> orders;
+    private String customerId;
+    private String customerName;
+    private String customerAddress;
+    private String customerPhone;
 }
