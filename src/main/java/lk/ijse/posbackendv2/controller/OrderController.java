@@ -1,8 +1,9 @@
 package lk.ijse.posbackendv2.controller;
 
 import lk.ijse.posbackendv2.dto.impl.OrderDTO;
-import lk.ijse.posbackendv2.dto.impl.ProductDTO;
+import lk.ijse.posbackendv2.dto.impl.OrderDTO;
 import lk.ijse.posbackendv2.exception.DataPersistException;
+import lk.ijse.posbackendv2.exception.OrderNotFoundException;
 import lk.ijse.posbackendv2.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/orders")
 public class OrderController {
-    Logger logger = LoggerFactory.getLogger(ProductController.class);
+    Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     OrderService orderService;
@@ -39,8 +40,24 @@ public class OrderController {
         }
     }
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OrderDTO> getAllProducts(){
+    public List<OrderDTO> getAllOrders(){
         return orderService.getAllOrders();
+    }
+
+    @DeleteMapping(value = "/{orderId}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable ("orderId") String orderId){
+        try {
+            orderService.deleteOrder(orderId);
+            logger.info("Order Deleted Successfully");
+
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (OrderNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

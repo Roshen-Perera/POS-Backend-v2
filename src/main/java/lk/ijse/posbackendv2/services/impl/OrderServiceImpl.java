@@ -57,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteOrder(String orderId) {
         Optional<Order> existedOrder = orderDAO.findById(orderId);
-        if (existedOrder.isPresent()) {
+        if (!existedOrder.isPresent()) {
             throw new OrderNotFoundException("Order not found "+orderId+" not found");
         } else {
             orderDAO.deleteById(orderId);

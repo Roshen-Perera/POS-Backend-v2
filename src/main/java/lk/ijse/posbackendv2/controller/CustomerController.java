@@ -39,8 +39,8 @@ public class CustomerController {
             buildCustomerDTO.setCustomerName(name);
             buildCustomerDTO.setCustomerAddress(address);
             buildCustomerDTO.setCustomerPhone(phone);
-            logger.info("Customer Saved Successfully");
             customerService.saveCustomer(buildCustomerDTO);
+            logger.info("Customer Saved Successfully");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
