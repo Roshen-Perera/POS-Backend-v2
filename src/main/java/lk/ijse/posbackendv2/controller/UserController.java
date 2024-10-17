@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
-
     @Autowired
     private UserService userService;
-
     static Logger logger =  LoggerFactory.getLogger(UserController.class);
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
