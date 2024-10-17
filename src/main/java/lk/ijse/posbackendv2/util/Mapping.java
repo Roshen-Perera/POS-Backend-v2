@@ -3,9 +3,11 @@ package lk.ijse.posbackendv2.util;
 import lk.ijse.posbackendv2.dto.impl.CustomerDTO;
 import lk.ijse.posbackendv2.dto.impl.OrderDTO;
 import lk.ijse.posbackendv2.dto.impl.ProductDTO;
+import lk.ijse.posbackendv2.dto.impl.UserDTO;
 import lk.ijse.posbackendv2.entity.impl.Customer;
 import lk.ijse.posbackendv2.entity.impl.Order;
 import lk.ijse.posbackendv2.entity.impl.Product;
+import lk.ijse.posbackendv2.entity.impl.User;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +53,15 @@ public class Mapping {
     public List<OrderDTO> asOrderDTOList(List<Order> orderEntities) {
         return modelMapper.map(orderEntities, new TypeToken<List<OrderDTO>>() {}.getType());
     }
+
+    public UserDTO toUserDTO(User user) {
+        return modelMapper.map(user, UserDTO.class);
+    }
+    public User toUserEntity(UserDTO userDTO) {
+        return modelMapper.map(userDTO, User.class);
+    }
+    public List<UserDTO> asUserDTOList(List<User> userEntities) {
+        return modelMapper.map(userEntities, new TypeToken<List<UserDTO>>() {}.getType());
+    }
+
 }
